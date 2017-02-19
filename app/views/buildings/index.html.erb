@@ -2,20 +2,28 @@
 
 <h1>Listing Buildings</h1>
 
-<table>
+<table class="w1200px">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th colspan="3"></th>
+      <th class="w25">Name</th>
+      <th class="w20">Address</th>
+      <th class="w20">Measurement</th>
+      <th class="w10">Year</th>
+      <th class="w10">Total</th>
+      <th class="w10">Unit</th>
     </tr>
   </thead>
 
   <tbody>
     <% @buildings.each do |building| %>
-      <tr>
+      <tr id="<%= building.id %>">
         <td><%= building.name %></td>
         <td><%= building.address %></td>
+        <% m = building.measurements.first %>
+        <td><%= m.name %></td>
+        <td><%= select_tag :year, options_for_select(2008..2012) %></td>
+        <td><%= EnergyUsage.for_building(building).for_measurement(m).during_year(2008).sum(:value).round(2) %></td>
+        <td><%= m.unit %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,5 +1,5 @@
 class BuildingsController < ApplicationController
   def index
-    @buildings = Building.all
+    @buildings = Building.all.includes(:energy_usages, :measurements)
   end
 end

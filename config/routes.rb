@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'buildings#index'
+
   resources :buildings, only: :index
 
   # The priority is based upon order of creation: first created -> highest priority.
