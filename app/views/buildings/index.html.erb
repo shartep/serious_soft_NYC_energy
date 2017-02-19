@@ -10,21 +10,10 @@
       <th class="w20">Measurement</th>
       <th class="w10">Year</th>
       <th class="w10">Total</th>
-      <th class="w10">Unit</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @buildings.each do |building| %>
-      <tr id="<%= building.id %>">
-        <td><%= building.name %></td>
-        <td><%= building.address %></td>
-        <% m = building.measurements.first %>
-        <td><%= m.name %></td>
-        <td><%= select_tag :year, options_for_select(2008..2012) %></td>
-        <td><%= EnergyUsage.for_building(building).for_measurement(m).during_year(2008).sum(:value).round(2) %></td>
-        <td><%= m.unit %></td>
-      </tr>
-    <% end %>
+    <%= render @buildings %>
   </tbody>
 </table>

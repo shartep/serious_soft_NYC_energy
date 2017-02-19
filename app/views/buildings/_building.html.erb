@@ -1,0 +1,19 @@
+<%
+    first_year = building.energy_usages.order(:date).first.date.year
+    last_year  = building.energy_usages.order(:date).last.date.year
+%>
+
+<tr id="<%= building.id %>">
+  <td><%= building.name %></td>
+  <td><%= building.address %></td>
+  <td><%= select_tag :measurement,
+                     options_from_collection_for_select(building.measurements.uniq, :id, :name_with_unit),
+                     class: 'measurement_select'
+      %>
+  </td>
+  <td><%= select_tag :year, options_for_select(first_year..last_year), class: 'year_select' %></td>
+  <td class="total_value"><%= EnergyUsage.for_building_mes_year(building.id,
+                                                                building.measurements.first.id,
+                                                                first_year) %>
+  </td>
+</tr>

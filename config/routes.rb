@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :buildings, only: :index
 
+  get 'energy_usages/total_for_year_building_measurement'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
