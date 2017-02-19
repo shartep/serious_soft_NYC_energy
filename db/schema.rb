@@ -21,18 +21,18 @@ ActiveRecord::Schema.define(version: 20170217232927) do
   end
 
   create_table "energy_usages", force: :cascade do |t|
-    t.decimal  "value",         precision: 20, scale: 5
+    t.decimal  "value",          precision: 20, scale: 5
     t.integer  "building_id"
-    t.integer  "mesurement_id"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.integer  "measurement_id"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.date     "date"
   end
 
   add_index "energy_usages", ["building_id"], name: "index_energy_usages_on_building_id"
-  add_index "energy_usages", ["mesurement_id"], name: "index_energy_usages_on_mesurement_id"
+  add_index "energy_usages", ["measurement_id"], name: "index_energy_usages_on_measurement_id"
 
-  create_table "mesurements", force: :cascade do |t|
+  create_table "measurements", force: :cascade do |t|
     t.string   "name"
     t.string   "unit"
     t.datetime "created_at", null: false
